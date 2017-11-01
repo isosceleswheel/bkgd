@@ -622,7 +622,11 @@ void bkgd_calc_b(BkgdPoint *bpoint, GList *cons_list, GList *next_cons,
   bpoint->b = b;
 
   /* calculate first derivative of b */
-  bpoint->b_drv1 = 2.0 * parm->u * b * drv1_sum;
+  // bpoint->b_drv1 = 2.0 * parm->u * b * drv1_sum;
+  // BUG: the first derivative should not be multiplied by 2 
+  // --David Murphy (git username: isosceleswheel)
+  // SUGGESTED FIX: 
+  bpoint->b_drv1 = parm->u * b * drv1_sum;
 
   /* calculate second derivative */
   bpoint->b_drv2 = (bpoint->b_drv1 * bpoint->b_drv1)/b - parm->u * b*drv2_sum;

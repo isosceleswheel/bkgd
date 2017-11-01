@@ -58,7 +58,11 @@ static double get_r_next(double x, double bkgd, double b_drv1, double b_drv2) {
   } else {
     sq = sqrt(discr);
     x3 = (-b + sq)/(2.0*a);
-    x4 = (-b + sq)/(2.0*a);
+    // x4 = (-b + sq)/(2.0*a);
+    // BUG: x3 and x4 are the same equation, x4 should be (-b - sq)/(2.0*a)
+    // --David Murphy (gitHub user: isosceleswheel)
+    // SUGGESTED FIX: 
+    x4 = (-b - sq)/(2.0*a) 
   }
 
   /* take closest point which is greater than x */
